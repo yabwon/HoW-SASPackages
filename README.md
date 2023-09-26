@@ -12,6 +12,8 @@ The conference takes place in San Diego, between October 31st and November 2nd 2
 
 In the meantime read about [Technical requirements](#technical-requirements) for the workshop.
 
+Don't forget to **STAR** (:star:) the repository! :-)
+
 You can also read about the [**SAS Packages Framework (SPF)**](https://github.com/yabwon/SAS_PACKAGES "SAS Packages Framework") and the [**SAS Packages Repository (SASPAC)**](https://github.com/SASPAC "SAS Packages Repository").
 
 ---
