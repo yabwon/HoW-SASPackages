@@ -39,3 +39,59 @@ Additionally, we assume that *you* wrote at least a few of those: a macro, a fun
 ---
 
 ---
+
+## Why SAS Packages and the Framework?
+
+Here you can find the list of reasons why using SAS Packages and SPF is a good idea. If you have any new suggestions share! :-)
+
+### SAS Packages - advantages
+
+- SAS Packages allow you to extend SAS capabilities by referencing reusable, centrally maintained code.
+
+- Not only macros! You can use different "types" like: user functions (`FCMP` and `CASL`), `IML` modules, proc proto `C` routines, formats, libraries, and even data generating code in a package.
+
+- Automatic update of the `cmplib=` and the `fmtsearch=` options for functions and formats. Utility macros for `IML` modules and `CAS-L` user defined functions for fast loading (with dependency checks).
+
+- Loading order of the code is organised the way you (developer) want it to be.
+
+- It is all in 1 (one) file - you won't forget to share "all that is needed" with your peers.
+
+- Functionality over complexity - share one file and say, e.g. "Here is my package with the `%ABC()` macro, you use the macro like this and that..." and you don't have to say that there are 73 other utility macros working in the "background".
+
+- A package contains additional metadata (e.g., version number or generation timestamp) which supports DevOps approach.
+
+- Help information is printed automatically in the log.
+
+- A package can be loaded into the SAS session even if you don't have access to the SPF macros (ICE-loading).
+
+- Shareable between different OS (Windows and Linux/UNIX).
+
+- Cleaning functionality.
+
+- Supports dependencies between packages.
+
+- It's not only BASE SAS, Packages work with Viya too (dedicated macros for Viya are still macros; `CAS-L` user defined functions - is one of types served).
+
+- Code is 100% "inspectable" before even loading it to the SAS session (with `%previevPackage()` macro).
+
+- Package integrity/genuinity can be tested (with `%verifyPackage()` macro).
+
+- Packages can be stored in and used from multiple directories (e.g., centrally maintained + your private).
+
+- Packages can contain "additional content", like PDFs, etc.
+
+- "Lazy" dataset loading is supported.
+
+- Package development "enforces" order in code.
+
+### SAS Packages Framework - advantages
+
+* Allows you to build and use SAS Packages.
+
+* The framework is MIT licensed and 100% open source.
+
+* The framework 100% SAS code (does not require any additional software to work).
+
+* The framework allows running packages tests.
+
+* Can be deployed in `sasautos`.
