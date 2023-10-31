@@ -4,17 +4,25 @@
 
 ---
 
-## Info note
+## Introduction note
 
-Soon this repository will contain all workshop materials required for the [WUSS 2023 conference](https://wuss.org) Hands-on-workshop: **Share your code with SAS Packages**. 
+This repository contains all workshop materials required for the [WUSS 2023 conference](https://wuss.org) Hands-on-workshop: **Share your code with SAS Packages**. 
 
-The conference takes place in San Diego, between October 31st and November 2nd 2023.
+The conference took place in San Diego, between October 31st and November 2nd 2023.
 
-In the meantime read about [Technical requirements](#technical-requirements) for the workshop.
+To be ready to learn read about [Technical requirements](#technical-requirements) for the workshop.
 
 Don't forget to **STAR** (:star:) the repository! :-)
 
-You can also read about the [**SAS Packages Framework (SPF)**](https://github.com/yabwon/SAS_PACKAGES "SAS Packages Framework") and the [**SAS Packages Repository (SASPAC)**](https://github.com/SASPAC "SAS Packages Repository").
+### To start the HoW open the [Share your code with SAS Packages - a Hands-on-Workshop.md](./Share%20your%20code%20with%20SAS%20Packages%20-%20a%20Hands-on-Workshop.md) file. It will guide you itself.
+
+The tutorial contains interactive elements (links) so the `.md` file reads the best in GitHub (or any other tool interpreting markdown files). For your convenience also a `.pdf` copy is provided.
+
+Should you have any questions or something is unclear do not hesitate contact the [author](https://www.linkedin.com/in/yabwon).  
+
+---
+
+Check out the [**SAS Packages Framework (SPF)**](https://github.com/yabwon/SAS_PACKAGES "SAS Packages Framework") and the [**SAS Packages Repository (SASPAC)**](https://github.com/SASPAC "SAS Packages Repository").
 
 ---
 
