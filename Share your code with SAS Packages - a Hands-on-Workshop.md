@@ -38,7 +38,7 @@
 
 ---
 
-#### Paper 208-2023
+#### Materials for:
 
 # `   Share your code with SAS Packages   ` <br/> `   a Hands-on-Workshop   ` 
 
