@@ -6,7 +6,7 @@
 
 ## Introduction note
 
-This repository contains all workshop materials required for the [WUSS 2023 conference](https://wuss.org) Hands-on-workshop: **Share your code with SAS Packages**. 
+This repository contains all workshop materials required for the Hands-on-workshop: **Share your code with SAS Packages**. 
 
 The conference took place in San Diego, between October 31st and November 2nd 2023.
 
@@ -19,6 +19,8 @@ Don't forget to **STAR** (:star:) the repository! :-)
 The tutorial contains interactive elements (links) so the `.md` file reads the best in GitHub (or any other tool interpreting markdown files). For your convenience also a `.pdf` copy is provided.
 
 Should you have any questions or something is unclear do not hesitate contact the [author](https://www.linkedin.com/in/yabwon).  
+
+Materials were used during: [WUSS 2023 conference](https://wuss.org).
 
 ---
 
