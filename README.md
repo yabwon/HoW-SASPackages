@@ -8,8 +8,6 @@
 
 This repository contains all workshop materials required for the Hands-on-workshop: **Share your code with SAS Packages**. 
 
-The conference took place in San Diego, between October 31st and November 2nd 2023.
-
 To be ready to learn read about [Technical requirements](#technical-requirements) for the workshop.
 
 Don't forget to **STAR** (:star:) the repository! :-)
@@ -20,7 +18,7 @@ The tutorial contains interactive elements (links) so the `.md` file reads the b
 
 Should you have any questions or something is unclear do not hesitate contact the [author](https://www.linkedin.com/in/yabwon).  
 
-Materials were used during: [WUSS 2023 conference](https://wuss.org).
+Materials were used during: [WUSS 2023 conference](https://wuss.org) (San Diego, Oct. 31st to Nov. 2nd 2023.).
 
 ---
 
