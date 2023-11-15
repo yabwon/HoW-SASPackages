@@ -1,11 +1,12 @@
-# [WUSS 2023 Conference](https://www.wuss.org)
-
 ```
 
-```
 
-```
-                         Paper 208-2023
+
+
+
+
+
+                         Materials for Workshops
 
           _____ _                                                    
          / ____| |                                                   
@@ -32,21 +33,35 @@
                            Bartosz Jabłoński
 
 
+
+
+
+
+
+
+
+
 ```
 
 ---
 
----
+------
+
+---------
+
+------------
+
+---------------
+
+------------------
+
+---------------------
 
 #### Materials for:
 
 # `   Share your code with SAS Packages   ` <br/> `   a Hands-on-Workshop   ` 
 
 ### by [Bartosz Jabłoński](https://www.linkedin.com/in/yabwon)
-
----
-
----
 
 ![The Cover](./cover.png)
 
