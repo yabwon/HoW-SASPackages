@@ -783,6 +783,8 @@ A SAS package can contain different sorts of SAS code or content, at the moment 
 - `exec` for so called "free code", 
 - `clean` for the code cleaning up the session after `exec`s,
 
+- `kmfsnip` for keyboard macro abbreviations (for DMS and EG)
+  
   and two "special" types
  
 - `test` for developer code with package tests,
@@ -997,6 +999,7 @@ This "one-liner" evokes the following "avalanche" of events:
   - if there were any `exec` *files* their content is printed out in the log and then they are executed,
   - if there were any `IML` *modules* they are compiled into `work.mypackageiml` catalog and a utility macro `%myPackageIML()` is generated (its purpose is to allow fast load of `IML` user defined modules into the `Proc IML` session),
   - if there were any `CASL` *user defined functions* a utility macro `%myPackageCASLudf()` is generated (its purpose is to allow fast load of CASL user defined functions into the `Proc CAS` session),
+  - if there were any `kmfsnip` keyboard macro abbreviations a `mypackage.kmf` file is generated in the `work` location,
 - in the last step the `SYSloadedPackages` technical macrovariable is, if does not exist, created and updated with the package name and version, in form: `myPackage(1.2.3)`.
 
 Of course the content of the package is loaded in the order designed by the developer!
