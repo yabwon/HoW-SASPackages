@@ -2051,6 +2051,39 @@ When you check that the log is clean and when you verify the output, and everyth
 
 There are a few things, just mentioned earlier, which where not discussed fully yet. This chapter is dedicated for such discussion.
 
+### "Automagically" generated documentation file
+
+The Developer puts a lot of effort to prepare help information snippets for the package components (those notes between `/*** HELP START ***/` and `/*** HELP END ***/` tags in code files). The `%helpPackage()` macro allows to print them out in the  SAS session log, but sometimes it would be convenient to have it all in one document with nice formatting.
+
+*Assuming* that the formatting in those help snippets aligns with **the markdown document formatting requirements** (like in case of our demo package) this can be done. 
+The `markdownDoc=` parameter of the `%generatePackage()` macro is design to trigger process of creating such file. All we need to do, also in case of our demonstration package, is to run:
+
+```sas
+%generatePackage(
+  filesLocation=/package/storage/directory
+ ,packages=/path/to/my/packages
+ ,markdownDoc=1
+)
+```
+
+Result will be the `mypackage.md` file created next to the `mypackage.zip` file in the packages storage directory.
+
+During the process of documentation creation one more "convenience" feature can be executed. The feature is triggered by the `easyArch=` parameter and it creates a copy of the the `mypackage.md` and the `mypackage.zip` files but with version number added to the file name, like: `mypackage_1.2.3_.md` and `mypackage_1.2.3_.zip`. The code to be run looks like this:
+
+```sas
+%generatePackage(
+  filesLocation=/package/storage/directory
+ ,packages=/path/to/my/packages
+ ,markdownDoc=1
+ ,easyArch=1
+)
+```
+
+The "easy archiving" provides convenient way to keep track of new package versions.
+
+*Note*: For backward compatibility those features are turned off by default, the parameters have to be set to 1 during package generation to enable them.
+
+
 ### Multiple paths in `packages` fileref
 
 The `packages` fileref is pointing to a directory where the SAS Packages Framework and packages are located. In the HoW, up to now, we only assumed it can be a single directory. But the SPF allows to work with multiple directories, so that the framework file and packages files can be stored in different places. 
