@@ -2083,6 +2083,12 @@ The "easy archiving" provides convenient way to keep track of new package versio
 
 *Note*: For backward compatibility those features are turned off by default, the parameters have to be set to 1 during package generation to enable them.
 
+If for some reason the developer want some of the package files to be excluded when generating the documentation file, e.g., to hide "internal functions" or "utility macros", it can be done by inserting an "exclusion comment" in the *first* line of the file. The "exclusion comment" can be one from the following list: 
+`/*##DoNotUse4Documentation##*/`,
+`/*##ExcludeFromDocumentation##*/`, or
+`/*##ExcludeFromMarkdownDoc##*/`. 
+They are case sensitive!
+
 
 ### Multiple paths in `packages` fileref
 
