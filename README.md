@@ -16,6 +16,8 @@ Don't forget to **STAR** (:star:) the repository! :-)
 
 The tutorial contains interactive elements (links) so the `.md` file reads the best in GitHub (or any other tool interpreting markdown files). For your convenience also a `.pdf` copy is provided.
 
+To get training materials simply clone this repository or see the [instruction](./HoW_get_materials.png)
+
 Should you have any questions or something is unclear do not hesitate contact the [author](https://www.linkedin.com/in/yabwon).  
 
 Materials were used during: [WUSS 2023 conference](https://wuss.org) (San Diego, Oct. 31st to Nov. 2nd 2023.).
