@@ -671,6 +671,8 @@ Install `macroArray` package from address provided:
 )
 ```
 
+At the end of the process the `%installPackage()` macro will give you a summary.
+
 ### Additional options of the `%installPackage()` macro
 
 The `%installPackage()` macro allows for a few additional modifications of its behaviour. Details about parameters can be found in the SPF documentation (see [Links](#links)) or be printed out "locally" into the log by running:
@@ -730,6 +732,12 @@ The most practical are the following.
   - Additional content loading - End -
   *** mypackage end *******************************************
   ```
+- If you want to get something like a "variable with the installation process status" you can use the `SFRCVN=` parameter. The parameter provides a macro variable name, That macro variable will be created and will contain status of the installation process in the following format: `<number of successes>.<number of fails>`, e.g., if you run 
+  ```sas
+  %installPackage(package1 package2 package3 package4 package5 package6, SFRCVN=ABCD)
+
+  ```
+  and four of them were installed successfully and two failed then the `ABCD` macro variable value will be equal `4.2`. 
 
 ### Verifying installation process
 
