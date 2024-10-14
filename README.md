@@ -58,7 +58,7 @@ Here you can find the list of reasons why using SAS Packages and SPF is a good i
 
 - SAS Packages allow you to extend SAS capabilities by referencing reusable, centrally maintained code.
 
-- Not only macros! You can use different "types" like: user functions (`FCMP` and `CASL`), `IML` modules, proc proto `C` routines, formats, libraries, and even data generating code in a package.
+- Not only macros! You can use different "types" like: user functions (`FCMP` and `CASL`), `IML` modules, proc proto `C` routines, formats, libraries, `PROC DS2` threads or packages, and even data generating code in a package.
 
 - Automatic update of the `cmplib=` and the `fmtsearch=` options for functions and formats. Utility macros for `IML` modules and `CAS-L` user defined functions for fast loading (with dependency checks).
 

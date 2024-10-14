@@ -806,7 +806,10 @@ A SAS package can contain different sorts of SAS code or content, at the moment 
 - `exec` for so called "free code", 
 - `clean` for the code cleaning up the session after `exec`s,
 
-- `kmfsnip` for keyboard macro abbreviations (for DMS and EG)
+- `kmfsnip` for keyboard macro abbreviations (for DMS and EG),
+
+- `ds2pck` for `PROC DS2` packages,
+- `ds2thr` for `PROC DS2` threads,
   
   and two "special" types
  
@@ -1023,6 +1026,7 @@ This "one-liner" evokes the following "avalanche" of events:
   - if there were any `IML` *modules* they are compiled into `work.mypackageiml` catalog and a utility macro `%myPackageIML()` is generated (its purpose is to allow fast load of `IML` user defined modules into the `Proc IML` session),
   - if there were any `CASL` *user defined functions* a utility macro `%myPackageCASLudf()` is generated (its purpose is to allow fast load of CASL user defined functions into the `Proc CAS` session),
   - if there were any `kmfsnip` keyboard macro abbreviations a `mypackage.kmf` file is generated in the `work` location,
+  - if there were and `PROC DS2` threads or packages they are compiled into dedicated SAS data sets with names corresponding to the thread or package name,
 - in the last step the `SYSloadedPackages` technical macrovariable is, if does not exist, created and updated with the package name and version, in form: `myPackage(1.2.3)`.
 
 Of course the content of the package is loaded in the order designed by the developer!
@@ -1071,7 +1075,9 @@ Since only part of the package is loaded there must be a price for that, as they
 - the `SYSLoadedPackages` macrovariable is not updated (because the package is not loaded), and 
 - for the `proto` functions if a part of the group is selected and the group was already loaded all the group is overwritten (they are not mutable, the best way to cherry-pick `proto` functions is to list them all).
 
-(4) Finally, the additional content, we already know it can be deployed during installation, but it can be done also during the loading. The target directory in this case is the location of the `WORK` library. If you want to extract additional content to the directory of your choice the best way is to use the `%loadPackageAddCnt()` macro.
+(4) If a package happens to contain `PROC DS2` threads or packages code then ,by default, if a SAS data set named the same as the DS2 thread or package exists then the DS2 code is not loaded to prevent potential data destruction. To force "overwrite" the `DS2force=` parameter can be set to `1` in the `%loadPackage()` macro.
+
+(5) Finally, the additional content, we already know it can be deployed during installation, but it can be done also during the loading. The target directory in this case is the location of the `WORK` library. If you want to extract additional content to the directory of your choice the best way is to use the `%loadPackageAddCnt()` macro.
 
 
 #### Loading packageS - a practical trick
@@ -2147,7 +2153,7 @@ Here you can find the list of reasons why using SAS Packages is a good idea.
 
 - SAS Packages allow you to extend SAS capabilities by referencing reusable, centrally maintained code.
 
-- Not only macros! You can use different "types" like: user functions (`FCMP` and `CASL`), `IML` modules, proc proto `C` routines, formats, libraries, and even data generating code in a package.
+- Not only macros! You can use different "types" like: user functions (`FCMP` and `CASL`), `IML` modules, proc proto `C` routines, formats, libraries, `PROC DS2` threads or packages, and even data generating code in a package.
 
 - Automatic update of the `cmplib=` and the `fmtsearch=` options for functions and formats. Utility macros for `IML` modules and `CAS-L` user defined functions for fast loading (with dependency checks).
 
