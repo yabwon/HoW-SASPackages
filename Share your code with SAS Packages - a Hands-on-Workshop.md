@@ -188,7 +188,7 @@ The closest one to the idea presented here is the `SAS/IML` which offers (limite
 A **SAS package** is an automatically generated, single, stand alone `zip` file containing organized and ordered code structures, created by the developer and extended with additional automatically generated "driving" files (i.e. description, metadata, load, unload, and help files). 
 The purpose of a package is to be a simple, and easy to access, code sharing medium, which allows: on the one hand, to separate the code complex dependencies created by the developer from the user experience with the final product and, on the other hand, reduce developer's and user's unnecessary frustration related to the deployment (installation) process.
 
-The **SAS Packages Framework** is a "pack" of macros, which allows the *use* and *development* of SAS packages. At the moment there are 11 (eleven) macros in the framework.
+The **SAS Packages Framework** is a "pack" of macros, which allows the *use* and *development* of SAS packages. At the moment there are 12 (twelve) macros in the framework.
 
 Ten of them dedicated for users:
 
@@ -209,9 +209,11 @@ Ten of them dedicated for users:
 
 - [`%extendPackagesFileref()`](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#extendpackagesfileref)
 
-and one dedicated to developers:
+and two dedicated to developers:
 
 - [`%generatePackage()      `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#generatepackage      )
+
+- [`%splitCodeForPackage()  `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#splitcodeforpackage  )
 
 The above list contains links to the documentation of each macro, similar documentation in a text form can be displayed in the SAS log by running the following code:
 
@@ -1526,6 +1528,8 @@ The [**Package Storage Directory version 1**](./PSDv1 "Package Storage Directory
 
 OK, we did it! The most laboursome part of the work is behind us.
 
+[**NOTE:**] If you have a "one big code file" and think splitting it in those multiple-separate-files-and-subdirectories looks to painful for you to go further with creating a package, fear not! In the ["Few other details"](#few-other-details) section you can find description and use case example of the `%splitCodeForPackage()` *utility* macro that can help you make the process easier.
+
 #### The description 
 
 The description file contains package "metadata". Its simple structure is based on key-value pairs separated by a colon (`:`) and a block of the description text surrounded by `DESCRIPTION START:` and `DESCRIPTION END:` tags.
@@ -2138,6 +2142,55 @@ filename ice ZIP "/path/to/my/packages/mypackage.zip";
 filename packages "/path/to/my/packages";
 %ICEloadPackage(myPackage)
 ```
+
+
+
+### It's to laboursome and I'm lazy
+
+This section presents a utility macro that makes the splitting a "one big code" file into a package structure process much easier and less laborious.
+
+The `%splitCodeForPackage()` utility macro allows us to take one big code file, and after adding some `tags` to it, split the content of the file into a package structure (i.e. files and directories). 
+
+The tagging process is very simple. Each code snippet you want to "redirect" to a particular file you mark by 
+`/*##$##-code-block-start-##$## 99_type(object) */`
+and 
+`/*##$##-code-block-end-##$## 99_type(object) */` tags, for example:
+
+```sas
+/*##$##-code-block-start-##$## 01_macro(abc) */
+ %macro abc();
+   %put I am "abc".;
+ %mend abc;
+/*##$##-code-block-end-##$## 01_macro(abc) */
+```
+
+Tags can overlap or be nested, and if we need to redirect one snippet to two files we can just surround it by
+`/*##$##-code-block-start-##$## type1(object1) type2(object2) */`
+and 
+`/*##$##-code-block-end-##$## type1(object1) type2(object2) */` block.
+
+See the [`code for myPackage with tags.sas`](./code%20for%20myPackage%20with%20tags.sas "code for myPackage with tags.sas") file for more example. 
+
+The result of running:
+```sas
+%splitCodeForPackage(
+    codeFile="/path/to/location/of/the/code for myPackage with tags.sas"
+   ,packagePath=/package/storage/directory)
+```
+code on the example file can be found in 
+[PSDv5](./PSDv5 "Package Storage Directory with code split by %splitCodeForPackage() macro") directory (compare it with [PSDv1](./PSDv1 "Package Storage Directory version 1")).
+
+The `codeFile=` parameter points to the tagged file (path can in quotes or not), the `packagePath=` parameter points the location where result files should be created.
+
+[NOTE1:] In the current version of the framework, if the process is executed multiple times files are *not* overwritten automatically. Each execution's content is "appended" to what already is in the `packagePath=` directory. If we want to start over, the `packagePath=` directory has to be manually purged from the previous execution's "leftovers".
+
+[NOTE2:]
+Each file created with help of the `%splitCodeForPackage()` macro has the following line of comment:
+```sas
+/* File generated with help of SAS Packages Framework, version YYYYMMDD. */
+``` 
+added at the very first line of the file.
+
 
 <div align="right">
   <a href='#table-of-contents'>go to ToC</a>
