@@ -1063,6 +1063,13 @@ ERROR: Package myPackage will not be loaded!
        Verify installed version of the package.
 
 ```
+If the required version is provided with a comparison operator, e.g., `<=`, `=`, or `>`, then the operator is used to compare `required` and `provided` versions, as the following example
+```sas
+%loadPackage(myPackage
+  ,requiredVersion=1.2.2=
+)
+```
+will force to load the package only if the required version is exactly equal to the provided one. Comparison is done in form "`req. comparison prov.`".
 
 (3) The next one is "Cherry Picking". Sometimes a package can contain a lot off "stuff", e.g., 123 macros, 42 functions, 17 formats and 2 datasets. Loading all of that into your SAS session when you need only two of those functions for your work seems to be a waste of resources. This is the use case when the "cherry picking" can be a solution. When you know the names of particular elements you want to load (reading help notes works well here) e.g., `fastfunction` and `furiousformat`, all you need to run is:
 ```sas
