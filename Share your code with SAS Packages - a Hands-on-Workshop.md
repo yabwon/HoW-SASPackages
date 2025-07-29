@@ -740,7 +740,19 @@ The most practical are the following.
 
   ```
   and four of them were installed successfully and two failed then the `ABCD` macro variable value will be equal `4.2`. 
+- If you created a package, say `myPackage`, under your GitHub, say `myGitHub`, you can easily install the package from the location by using the `github=` parameter. When you run
+  ```sas
+  %installPackage(myPackage, github=myGitHub)
 
+  ```
+  the macro will search for the `mypackage.zip` file under `https://raw.github.com/myGitHub/mypackagex/raw/main/`.
+  If the `mypackage.zip` is tagged with a version number, say `1.2.3`, you can install that particular version by running
+  ```sas
+  %installPackage(myPackage(1.2.3), github=myGitHub)
+
+  ```
+  In this case, the macro will search for the `mypackage.zip` file under `https://raw.github.com/myGitHub/mypackagex/raw/1.2.3/`.
+  
 ### Verifying installation process
 
 When the installation process is complete the packages have been added to our packages directory (i.e. copied there) but they have *not yet been loaded* into our SAS session. It is a good idea to confirm which packages are available to be loaded. This can be done manually by looking into the packages directory but this gives us only a glimpse that those `zip` files are there.
