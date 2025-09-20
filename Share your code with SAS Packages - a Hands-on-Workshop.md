@@ -745,13 +745,13 @@ The most practical are the following.
   %installPackage(myPackage, github=myGitHub)
 
   ```
-  the macro will search for the `mypackage.zip` file under `https://raw.github.com/myGitHub/mypackagex/raw/main/`.
+  the macro will search for the `mypackage.zip` file under `https://raw.github.com/myGitHub/mypackage/raw/main/`.
   If the `mypackage.zip` is tagged with a version number, say `1.2.3`, you can install that particular version by running
   ```sas
   %installPackage(myPackage(1.2.3), github=myGitHub)
 
   ```
-  In this case, the macro will search for the `mypackage.zip` file under `https://raw.github.com/myGitHub/mypackagex/raw/1.2.3/`.
+  In this case, the macro will search for the `mypackage.zip` file under `https://raw.github.com/myGitHub/mypackage/raw/1.2.3/`.
   
 ### Verifying installation process
 

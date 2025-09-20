@@ -21,10 +21,11 @@ To get training materials simply clone this repository or see the [instruction](
 Should you have any questions or something is unclear do not hesitate contact the [author](https://www.linkedin.com/in/yabwon).  
 
 Materials were used during: 
-- [WUSS 2023 conference](https://wuss.org) (San Diego, CA, Oct. 31st to Nov. 2nd, 2023), 
+- [WUSS 2023 conference](https://www.wuss.org/wuss-2023-conference-proceedings/) (San Diego, CA, Oct. 31st to Nov. 2nd, 2023), 
 - [PharmaSUG 2024 conference](https://pharmasug.org/conferences/pharmasug-2024-us/training-seminars/) (Baltimore, MD,
 May 19th to 22nd, 2024), 
-- [SAS-tastic meetup workshops](https://www.linkedin.com/posts/azforum_23-wrze%C5%9Bnia-w-forum-medtech-odby%C5%82o-si%C4%99-kolejne-activity-7254415484870123520-s-8Q/) (Warsaw, Poland, Sep. 22nd, 2024).
+- [SAS-tastic meetup workshops](https://www.linkedin.com/posts/azforum_23-wrze%C5%9Bnia-w-forum-medtech-odby%C5%82o-si%C4%99-kolejne-activity-7254415484870123520-s-8Q/) (Warsaw, Poland, Sep. 22nd, 2024),
+- [SESUG 2025 conference](https://sesug.org/SESUG2025/index.php) (Cary, NC, Sep. 22nd to 24th, 2025).
 
 ---
 
@@ -112,6 +113,6 @@ Here you can find the list of reasons why using SAS Packages and SPF is a good i
 
 ---
 
-Last review date: `2025-07-29`
+Last review date: `2025-09-20`
 
 ---
