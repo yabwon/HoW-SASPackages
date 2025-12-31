@@ -150,7 +150,7 @@ The intended audience for the presentation is intermediate or advanced SAS devel
 
 The workshop assumes that you have available the following resources:
 - a computer with internet access,
-- a SAS session (may be local or remote), the interface can be: `SAS DMS`, `SAS EG`, or `SAS Studio`, can be `SAS 9.4` or `Viya` with `SPRE`
+- a SAS session (may be local or remote), the interface can be: `SAS DMS`, `SAS EG`, or `SAS Studio`, can be `SAS 9.4`, `Viya` with `SPRE`, or `SAS Workbench`
 - the SAS session has:
   - direct internet access or
   - you are able to upload files to the computer hosting your session,
@@ -188,7 +188,7 @@ The closest one to the idea presented here is the `SAS/IML` which offers (limite
 A **SAS package** is an automatically generated, single, stand alone `zip` file containing organized and ordered code structures, created by the developer and extended with additional automatically generated "driving" files (i.e. description, metadata, load, unload, and help files). 
 The purpose of a package is to be a simple, and easy to access, code sharing medium, which allows: on the one hand, to separate the code complex dependencies created by the developer from the user experience with the final product and, on the other hand, reduce developer's and user's unnecessary frustration related to the deployment (installation) process.
 
-The **SAS Packages Framework** is a "pack" of macros, which allows the *use* and *development* of SAS packages. At the moment there are 12 (twelve) macros in the framework.
+The **SAS Packages Framework** is a "pack" of macros, which allows the *use* and *development* of SAS packages. At the moment, December 31st, 2025, there are 20 (twenty) macros in the framework (17 interfacing with programmers + 3 internal).
 
 Ten of them dedicated for users:
 
@@ -209,11 +209,25 @@ Ten of them dedicated for users:
 
 - [`%extendPackagesFileref()`](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#extendpackagesfileref)
 
-and two dedicated to developers:
+two dedicated to developers:
 
 - [`%generatePackage()      `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#generatepackage      )
 
 - [`%splitCodeForPackage()  `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#splitcodeforpackage  )
+
+and five utility/housekeeping for everyone:
+
+- [`%isPackagesFilerefOK()            `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#ispackagesfilerefok            )
+
+- [`%relocatePackage()                `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#relocatepackage                )
+
+- [`%bundlePackages()                 `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#bundlepackages                 )
+
+- [`%unbundlePackages()               `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#unbundlepackages               )
+
+- [`%SasPackagesFrameworkNotes()      `](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/SPFinit.md#saspackagesframeworknotes      )
+
+
 
 The above list contains links to the documentation of each macro, similar documentation in a text form can be displayed in the SAS log by running the following code:
 
@@ -230,6 +244,27 @@ For example:
 
 %generatePackage(HELP) 
 ```
+
+If you forget name of a macro you can use the `%SasPackagesFrameworkNotes()` macro. It is dedicated to provide easy help notes for the framework. To list names of all macros run;
+
+```sas
+%SasPackagesFrameworkNotes()
+```
+
+To print help notes for all macros run:
+
+```sas
+%SasPackagesFrameworkNotes(*)
+```
+
+To get help for particular one run:
+
+```sas
+%SasPackagesFrameworkNotes(nameOfTheMacro)
+```
+
+or list multiple names.
+
 
 ### Basic steps
 
@@ -278,7 +313,7 @@ In this section you will find a list of useful links. During the workshop you ca
 
 
 Articles:
-- [["SAS Packages - the Way to Share", B. Jablonski, 2020]](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/Documentation/SAS(r)%20packages%20-%20the%20way%20to%20share%20(a%20how%20to)-%20Paper%204725-2020%20-%20extended.pdf "SAS Packages - the Way to Share")
+- [["SAS Packages - the Way to Share", B. Jablonski, 2020]](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/Documentation/SAS(r)%20packages%20-%20the%20way%20to%20share%20(a%20how%20to)-%20Paper%204725-2020%20-%20extended.pdf "SAS Packages - the Way to Share") - continuously extended with all updates up to the latest release.
 - [["My First SAS Package - a How To", B. Jablonski, 2021]](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/Documentation/Paper_1079-2021/My%20First%20SAS%20Package%20-%20a%20How%20To.pdf "My First SAS Package - a How To")
 
 
@@ -1395,7 +1430,7 @@ run;
 
 The process of building a SAS package is simple but requires some "orderliness". 
 
-### Other resources
+### Other resources 
 
 - A thirteen step instruction how to build [a "hello world" package](https://github.com/yabwon/SAS_PACKAGES/blob/main/SPF/Documentation/HelloWorldPackage.md). A video recording of the instruction can be seen at the ["SAS Packages Framework - an easy code sharing medium for SAS"](https://youtu.be/T52Omisi0dk&t=0s "Warsaw IT Days 2023") presentation from *Warsaw IT Days 2023* conference, the process starts around 36th minute of the video.
 
@@ -2187,6 +2222,20 @@ and
 /*##$##-code-block-end-##$## 01_macro(abc) */
 ```
 
+or
+
+```sas
+Proc FCMP outlib=work.myLocalFile.p;
+
+/*##$##-code-block-start-##$## 02_functions(f) */
+ function f(question $);
+   return(42);
+ endfunc;
+/*##$##-code-block-end-##$## 02_functions(f) */
+
+quit;
+```
+
 Tags can overlap or be nested, and if we need to redirect one snippet to two files we can just surround it by
 `/*##$##-code-block-start-##$## type1(object1) type2(object2) */`
 and 
@@ -2213,6 +2262,99 @@ Each file created with help of the `%splitCodeForPackage()` macro has the follow
 /* File generated with help of SAS Packages Framework, version YYYYMMDD. */
 ``` 
 added at the very first line of the file.
+
+
+
+### Housekeeping in SAS packages inferno
+
+In a single user environment, like local PC SAS or environments where users have their own separate space (e.g., SAS Workbench), keeping packages directories tidy and well organized may not necessary be a "highly required" demand, but in a setup where multiple users, or project teams, share centralized location for packages, the environment (e.g., packages versions) cannot be changed "just like that". Keeping the environment tidy can save programmers form so called "packages inferno", a situation where no one knows which version is where, which one is used, and "why my project is no longer working after packages update?".
+
+On multiple occasions I've been *highlighting* how important the **backward compatibility** is in packages development. Unfortunately life happens and backward compatibility principle may not always be held...
+
+In such morbid situation, creating SAS packages bundles can be an interesting solution and can save your day. 
+
+Definition: a **SAS packages bundle** is a zip file containing one or more SAS packages and bundle metadata file inside the zip. Such a SAS bundle can be used as a container for a "snapshot" of the current SAS packages state in the SAS environment.
+
+The `%bundlePackages()` and `%unbundlePackages()` macros (both build atop of the `%relocatePackage()` macro) serves that purpose. The following use case illustrates how (and when) those macros can help.
+
+The scenario goes as follows:
+
+- Company X keeps packages in a "central" directory `/sas/packages` and there are 17 different packages stored in the location.
+
+- A very important project is processed in the `/projects/number42` directory. Programs and data are kept inside the location.
+
+- For their analysis The A-team is using packages `ABC` and `XYZ` located in `/sas/packages` directory.
+
+- The project successfully ends December 31st, 2025, and the A-team "saves" current versions of `ABC` and `XYZ` packages into `bundleForProject42_20251231` bundle.
+
+  ~~~~sas
+  filename packages "/sas/packages";
+  %include packages(SPFinit.sas);
+
+  libname b "/sas/bundles";
+
+  %let date=20251231;
+
+  %bundlePackages(
+    bundleForProject42_&date.
+  , packagesList=ABC XYZ
+  , path=/sas/bundles
+  , ods=b.SHA256forProject42_&date.
+  )
+  ~~~~
+
+  The snippet above assigns `packages` fileref to `/sas/packages`, enables the framework (personally I'd keep those 2 lines in the autoexec), sets library `b`, and creates convenience macro variable `date`. The `%bundlePackages()` macro takes packages `ABC` and `XYZ` from the `packages` fileref and bundles them into the `bundleForProject42_&date.` bundle.
+
+- After execution the `bundleforproject42_20251231.bundle.zip` file and the `SHA256forProject42_20251231.sas7bdat` data set (containing the bundle's SHA256 checks sum) are stored in the `/sas/bundles` directory.
+
+- Some time passes and newer versions of packages `ABC` and `XYZ` are developed and installed in the central packages directory. Hopefully developers followed the backward compatibility principle when they were updating/modifying those packages, but with the bundle the A-team doesn't have to worry.
+
+- Some time later The A-team gets a request to re-run project 42 on newly delivered data.
+
+- To ensure expected behavior of `ABC` and `XYZ` the A-team extracts the `bundleForProject42_20251231` bundle file from the `/sas/bundles` directory to a temporary location in `/adhoc/for42` (they also, optionally, verify if the bundle was not modified by someone from a "hostile" B-team).
+
+  ~~~~sas
+  filename packages "/sas/packages";
+  %include packages(SPFinit.sas);
+ 
+  %let bndls=/sas/bundles; /* bundles location */
+  %let date=20251231;
+
+  /* verify bundle */
+  libname b "&bndls.";
+  data _null_;
+    set b.SHA256forProject42_&date.;
+    call symputX('bundleSHA256', bundleSHA256);
+  run;
+  %verifyPackage(
+    bundleForProject42_&date..bundle
+  , hash=&bundleSHA256.
+  , path=&bndls.
+  )
+
+  /* extrat bundle to /adhoc/for42 */
+  %unbundlePackages(
+    bundleForProject42_&date.
+  , path=&bndls.
+  , packagesPath=/adhoc/for42
+  , verify=1
+  )
+  ~~~~
+
+  Note that the `.bundle` suffix was added to bundle name in the `%verifyPackage()` macro call.
+
+- After successful unbundling the A-team appends the `/adhoc/for42` path to the beginning of the `packages` fileref.
+  ~~~~sas
+  filename packages ("/adhoc/for42" %extendPackagesFileref());
+  ~~~~
+
+- Packages `ABC` and `XYZ` can now be loaded with their historical versions.
+
+- The A-team successfully re-runs the project.
+
+- The (Happy) End.
+
+
 
 
 <div align="right">
@@ -2276,6 +2418,8 @@ Here you can find the list of reasons why using SAS Packages is a good idea.
 * The framework allows running packages tests.
 
 * Can be deployed in `sasautos`.
+
+* SAS packages bundles can keep SAS packages environment tidy.
 
 
 <div align="right">
