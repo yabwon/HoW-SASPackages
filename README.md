@@ -10,7 +10,7 @@ This repository contains all workshop materials required for the Hands-on-worksh
 
 To be ready to learn read about [Technical requirements](#technical-requirements) for the workshop.
 
-Don't forget to **STAR** (:star:) the repository! :-)
+Don't forget to **STAR** ( ⭐ ) the repository! :-)
 
 ### To start the HoW open the [Share your code with SAS Packages - a Hands-on-Workshop.md](./Share%20your%20code%20with%20SAS%20Packages%20-%20a%20Hands-on-Workshop.md) file. It will guide you itself.
 
@@ -37,7 +37,7 @@ Check out the [**SAS Packages Framework (SPF)**](https://github.com/yabwon/SAS_P
 
 The workshop assumes that you have available the following resources:
 - a computer with internet access,
-- a SAS session (may be local or remote), the interface can be: `SAS DMS`, `SAS EG`, or `SAS Studio`, can be `SAS 9.4` or `Viya` with `SPRE`
+- a SAS session (may be local or remote), the interface can be: `SAS DMS`, `SAS EG`, or `SAS Studio`, can be `SAS 9.4`, `Viya` with `SPRE`, or `SAS Workbench`
 - the SAS session has:
   - direct internet access or
   - you are able to upload files to the computer hosting your session,
@@ -111,8 +111,10 @@ Here you can find the list of reasons why using SAS Packages and SPF is a good i
 
 * Can be deployed in `sasautos`.
 
+* SAS packages bundles can keep SAS packages environment tidy.
+
 ---
 
-Last review date: `2025-09-20`
+Last review date: `2025-12-31`
 
 ---
