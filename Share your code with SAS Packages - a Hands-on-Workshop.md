@@ -2354,8 +2354,42 @@ The scenario goes as follows:
 
 - The (Happy) End.
 
+### Installing SAS packages from private GitHub repositories
 
+If you properly configure yourself a fine-grained personal access token for GitHub, then you can install packages from private repositories (those to which the token has access to).
 
+This tutorial is about SAS packages, for fine-grained personal access tokens read [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token), it will teach you how to create and setup your token. Remember the token has to allow for at least "content read" access level!
+
+Assuming that your GitHub account/organization is `ABCDEF` and the repository that keeps your private packages is named `myPrivateRepo`, i.e., the GitHup link looks like: `https://github.com/ABCDEF/myPrivateRepo/raw/.../`, the following program installs `myPrivatePackage` package for you:
+
+~~~~sas
+filename packages "/sas/packages";
+%include packages(SPFinit.sas)
+
+%installPackage(myPrivatePackage
+ , github = ABCDEF
+ , githubRepo = myPrivateRepo
+ , githubToken = github_pat_XXXXXXXXXXXXXXXXXXXXXX_YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+)
+~~~~
+
+The `githubToken=` parameter expects properly configured fine-grained personal access token for GitHub.
+
+### Installing SAS packages with backup
+
+By default, during the installation, the SPF overwrites existing (installed) packages files, but a backup copy of already installed package can be created before installing new one. To create backup copy use the `backup=` parameter of the `%installPackage()` macro. 
+When the parameter is set to `1` and a package file already exists (is installed), the macro creates a backup copy of the package file. The following snippet illustrates the situation:
+
+~~~~sas
+filename packages "/sas/packages";
+%include packages(SPFinit.sas)
+
+%installPackage(SQLinDS BasePlus, backup = 1)
+~~~~
+
+The backup copy is created with a suffix of the following format: `_BCKP_yyyymmddHHMMSS`. The timestamp is generated individually for every package.
+
+The `backup=` parameter is dependent on the `replace=` parameter, i.e.,  if the `replace=0` then `backup=` is set to `0` too.
 
 <div align="right">
   <a href='#table-of-contents'>go to ToC</a>
